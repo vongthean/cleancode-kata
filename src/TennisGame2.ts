@@ -112,11 +112,9 @@ export class TennisGame2 implements TennisGame {
   }
 
   SetP2Score(score: number): void {
-
     for (let i = 0; i < score; i++) {
       this.P2Score();
     }
-
   }
 
   P1Score(): void {
