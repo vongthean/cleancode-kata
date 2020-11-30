@@ -15,41 +15,51 @@ export class TennisGame2 implements TennisGame {
     this.player1Name = player1Name;
     this.player2Name = player2Name;
   }
+  getP1point(P1point : number) {
+    let slogan: string = '';
+    if (P1point === 0)
+      slogan = 'Love';
+    if (P1point === 1)
+      slogan = 'Fifteen';
+    if (P1point === 2)
+      slogan = 'Thirty';
+    slogan += '-All';
+    return slogan;
+  }
+  getP1res(P1point : number) {
+    if (P1point === 1)
+      this.P1res = 'Fifteen';
+    if (P1point === 2)
+      this.P1res = 'Thirty';
+    if (P1point === 3)
+      this.P1res = 'Forty';
 
+    this.P2res = 'Love';
+  }
+  getP2res(P2point : number) {
+    if (P2point === 1)
+      this.P2res = 'Fifteen';
+    if (P2point === 2)
+      this.P2res = 'Thirty';
+    if (P2point === 3)
+      this.P2res = 'Forty';
+
+    this.P1res = 'Love';
+  }
   getScore(): string {
     let score: string = '';
     if (this.P1point === this.P2point && this.P1point < 4) {
-      if (this.P1point === 0)
-        score = 'Love';
-      if (this.P1point === 1)
-        score = 'Fifteen';
-      if (this.P1point === 2)
-        score = 'Thirty';
-      score += '-All';
+      score = this.getP1point(this.P1point);
     }
     if (this.P1point === this.P2point && this.P1point >= 3)
       score = 'Deuce';
 
     if (this.P1point > 0 && this.P2point === 0) {
-      if (this.P1point === 1)
-        this.P1res = 'Fifteen';
-      if (this.P1point === 2)
-        this.P1res = 'Thirty';
-      if (this.P1point === 3)
-        this.P1res = 'Forty';
-
-      this.P2res = 'Love';
+      this.getP1res(this.P1point);
       score = this.P1res + '-' + this.P2res;
     }
     if (this.P2point > 0 && this.P1point === 0) {
-      if (this.P2point === 1)
-        this.P2res = 'Fifteen';
-      if (this.P2point === 2)
-        this.P2res = 'Thirty';
-      if (this.P2point === 3)
-        this.P2res = 'Forty';
-
-      this.P1res = 'Love';
+      this.getP2res(this.P2point);
       score = this.P1res + '-' + this.P2res;
     }
 
