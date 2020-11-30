@@ -46,6 +46,26 @@ export class TennisGame2 implements TennisGame {
 
     this.P1res = 'Love';
   }
+  getScorePoint1ThanPoint2(P1point : number, P2point: number) {
+    if (P1point === 2)
+      this.P1res = 'Thirty';
+    if (P1point === 3)
+      this.P1res = 'Forty';
+    if (P2point === 1)
+      this.P2res = 'Fifteen';
+    if (P2point === 2)
+      this.P2res = 'Thirty';
+  }
+  getScorePoint2ThanPoint1(P1point : number, P2point: number) {
+    if (P2point === 2)
+      this.P2res = 'Thirty';
+    if (P2point === 3)
+      this.P2res = 'Forty';
+    if (P1point === 1)
+      this.P1res = 'Fifteen';
+    if (P1point === 2)
+      this.P1res = 'Thirty';
+  }
   getScore(): string {
     let score: string = '';
     if (this.P1point === this.P2point && this.P1point < 4) {
@@ -64,25 +84,11 @@ export class TennisGame2 implements TennisGame {
     }
 
     if (this.P1point > this.P2point && this.P1point < 4) {
-      if (this.P1point === 2)
-        this.P1res = 'Thirty';
-      if (this.P1point === 3)
-        this.P1res = 'Forty';
-      if (this.P2point === 1)
-        this.P2res = 'Fifteen';
-      if (this.P2point === 2)
-        this.P2res = 'Thirty';
+      this.getScorePoint1ThanPoint2(this.P1point, this.P2point);
       score = this.P1res + '-' + this.P2res;
     }
     if (this.P2point > this.P1point && this.P2point < 4) {
-      if (this.P2point === 2)
-        this.P2res = 'Thirty';
-      if (this.P2point === 3)
-        this.P2res = 'Forty';
-      if (this.P1point === 1)
-        this.P1res = 'Fifteen';
-      if (this.P1point === 2)
-        this.P1res = 'Thirty';
+      this.getScorePoint2ThanPoint1(this.P1point, this.P2point);
       score = this.P1res + '-' + this.P2res;
     }
 
